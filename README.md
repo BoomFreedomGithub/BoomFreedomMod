@@ -5,5 +5,5 @@ This plugin was originally coded by StevenLawson (Madgeek1450), with Jerom van d
 
 iHess (Lead Developer), edited the TotalFreedomMod, RubyFreedomMod items. AwesomePinch (Developer), is helping me developing the BoomFreedomMod. If you want to help, please goto: http://boomfreedom.boards.net to apply! We need a telnet console coder! Thanks! (Staff)
 
-Please see CONTRIBUTING.md if you are interested in developing TotalFreedomMod. For information on how TotalFreedomMod is licensed, please see LICENSE.md.
+Please see CONTRIBUTING.md if you are interested in developing TotalFreedomMod (BoomFreedomMod). For information on BoomFreedom please see LICENSE.md.
 
