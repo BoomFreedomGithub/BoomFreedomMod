@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+-<project basedir="." default="default" name="TotalFreedomMod">
+
+<description>Builds, tests, and runs the project TotalFreedomMod.</description>
+
+<import file="nbproject/build-impl.xml"/>
+
+<!-- if "build.properties" exists, store that in "build.properties.exists" -->
+
+
+
+-<target name="-build-properties-exists">
+
+<available file="build.properties" property="build.properties.exists"/>
+
+</target>
+
+<!-- Creates build.properties, unless it exists already -->
+
+
+
+-<target name="create-build-properties" unless="build.properties.exists" depends="-build-properties-exists">
+
+
+-<propertyfile file="build.properties" comment="Build information. Edit this to your liking.">
+
+<entry default="unknown" key="program.builder"/>
+
+</propertyfile>
+
+</target>
+
+<!-- Pre-jar property generation -->
+
+
+
+-<target name="-pre-jar" depends="create-build-properties">
+
+<!-- Determine git version -->
+
+
+
+-<exec errorproperty="" failifexecutionfails="false" outputproperty="program.buildhead" executable="git">
+
+<arg value="describe"/>
+
+<arg value="--tags"/>
+
+<arg value="--always"/>
+
+<arg value="HEAD"/>
+
+</exec>
+
+
+-<condition property="repository.version" value="${program.buildhead}" else="unknown">
+
+
+-<and>
+
+<isset property="program.buildhead"/>
+
+<length when="greater" length="0" trim="yes" string="${program.buildhead}"/>
+
+</and>
+
+</condition>
+
+<!-- Load build.properties file -->
+
+
+<property file="build.properties"/>
+
+<!-- Load buildnumber from build.properties, store in ${build.number} -->
+
+
+<buildnumber file="build.properties"/>
+
+<!-- Write build info -->
+
+
+
+-<propertyfile file="${build.classes.dir}/build.properties">
+
+<entry key="program.buildnumber" value="${build.number}"/>
+
+<entry key="program.buildhead" value="${program.buildhead}"/>
+
+<entry key="program.builder" value="${program.builder}"/>
+
+<entry key="program.builddate" value="now" pattern="yyyy-MM-dd hh:mm aa" type="date"/>
+
+</propertyfile>
+
+</target>
+
+<!-- Cleanup -->
+
+
+
+-<target name="-post-jar">
+
+<delete file="${dist.dir}/README.TXT"/>
+
+<delete dir="${dist.dir}/lib/"/>
+
+</target>
+
+</project>
